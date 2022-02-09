@@ -219,6 +219,8 @@ class PDBIO(StructureIO):
                         f"Invalid occupancy value: {atom.occupancy!r}"
                     ) from None
 
+            charge = atom.pdb_charge if atom.pdb_charge is not None else "  "
+
             args = (
                 record_type,
                 atom_number,
@@ -491,6 +493,7 @@ class PDBIO(StructureIO):
                                         resseq,
                                         icode,
                                         chain_id,
+                                        atom.pdb_charge,
                                     )
                                 except Exception as err:
                                     # catch and re-raise with more information
