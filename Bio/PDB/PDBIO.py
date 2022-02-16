@@ -169,9 +169,10 @@ class PDBIO(StructureIO):
         resseq,
         icode,
         chain_id,
-        charge="  ",
+        charge=None,
     ):
         """Return an ATOM PDB string (PRIVATE)."""
+        charge = "  " if charge is None else charge
         if hetfield != " ":
             record_type = "HETATM"
         else:
